@@ -65,10 +65,28 @@
           
           console.log(win);
           console.log(compWin);
+          console.log(winner(win, compWin));
         }
       }
 
       console.log(game());
+
+      function winner(win, compWin)
+      {
+        if (win > compWin)
+        {
+          return "You Won!";
+        }
+        else if (win < compWin)
+        {
+          return "You Lost!";
+        }
+        else
+        {
+          return "It's a Tie, You both won!";
+        }
+      }
+
     </script>
   </head>
   <body>
