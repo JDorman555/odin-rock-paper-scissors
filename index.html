@@ -2,13 +2,12 @@
 <html>
   <head>
     <script>
-      //const playerSelection = prompt("Do you choose, Rock? Paper? or Scissors?").toLowerCase();
-      //console.log(playerSelection);
-      //const computerSelection = getComputerChoice();
-      //console.log(computerSelection);
 
       let win = 0;
       let compWin = 0;
+
+      console.log(game());
+      console.log(winner(win, compWin));
 
       function getComputerChoice(compChoice) {
         let options = ['rock', 'paper', 'scissors'];
@@ -54,22 +53,14 @@
         }
       }
 
-      //console.log(playRound(playerSelection, computerSelection));
-
       function game() {
         for (let i = 0; i < 5; i++) 
         {
           const playerSelection = prompt("Do you choose, Rock? Paper? or Scissors?").toLowerCase();
           const computerSelection = getComputerChoice();
           console.log(playRound(playerSelection, computerSelection));
-          
-          console.log(win);
-          console.log(compWin);
-          console.log(winner(win, compWin));
         }
       }
-
-      console.log(game());
 
       function winner(win, compWin)
       {
