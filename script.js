@@ -1,10 +1,20 @@
       // keep track of player wins and computer wins
       let win = 0;
       let compWin = 0;
+      let round = 2;
+
+
+      //
+      const yourScore = document.querySelector('#yourScore');
+      //yourScore.textContent = `Your Score: ${win}`;
+      const compScore = document.querySelector('#compScore');
+      //compScore.textContent = `Your Score: ${compWin}`
+      const roundNum = document.querySelector('#round');
+
 
       // call functions
       //console.log(game());
-      console.log(winner(win, compWin));
+      //console.log(winner(win, compWin));
 
       // randomly pick rock, paper or scissors
       function getComputerChoice(compChoice) {
@@ -51,17 +61,7 @@
           return "Tie!";
         }
       }
-/*
-      // loop to prompt user for choice and to get new computer choice and run playRound
-      function game() {
-        for (let i = 0; i < 5; i++) 
-        {
-          const playerChoice = prompt("Do you choose, Rock? Paper? or Scissors?").toLowerCase();
-          const computerSelection = getComputerChoice();
-          console.log(playRound(playerChoice, computerSelection));
-        }
-      }
-*/
+
       // find the winner
       function winner(win, compWin)
       {
@@ -81,20 +81,16 @@
 
       let playerChoice = '';
       const buttons = document.querySelectorAll('button')
-  
+      
+      // for each button addEventListener, get playerChoice then playRound
       buttons.forEach((button) => {
         button.addEventListener('click', () => {
           playerChoice = button.id;
           const computerSelection = getComputerChoice();
           console.log(playRound(playerChoice, computerSelection));
-          //console.log(playerChoice);
-          //console.log(e.target);
-          //alert(button.id);
+          yourScore.textContent = `Your Score: ${win}`;
+          compScore.textContent = `Comp Score: ${compWin}`;
+          roundNum.textContent = `Round ${round}`;
+          round++;
         });
       });
-
-      /*
-      function getPlayerChoice() {
-        alert ("Hello Words");
-      }
-      */
