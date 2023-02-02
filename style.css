@@ -19,10 +19,33 @@ button {
   gap: 20px;
 }
 
+h1 {
+  margin-bottom: 5px;
+}
+
+#round {
+  font-size: 20px;
+  font-weight: 700px;
+}
+
 .bar {
   background-color: lightcoral;
   padding: 8px;
   flex: 1;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+
+button {
+  background: white;
+  border: 0;
+  height: 200px;
+  width: 200px;
 }
 
 .score {
