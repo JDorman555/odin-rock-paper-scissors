@@ -1,13 +1,28 @@
 body {
+  display: flex;
+  flex-direction: column;
   font-family: sans-serif;
-  background-color: white;
-  color: black;
+  background-color: rgb(27, 26, 26);
+  color: white;
   text-align: center;
 }
 
 button {
-  padding: 100px;
-  font-size: 35px;
+  padding: 0px;
+  margin: 0px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 20px;
+}
+
+.bar {
+  background-color: lightcoral;
+  padding: 8px;
+  flex: 1;
 }
 
 .score {
