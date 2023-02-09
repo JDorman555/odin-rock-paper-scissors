@@ -5,11 +5,13 @@ let round = 2;
 
 
 //
-const yourScore = document.querySelector('#yourScore');
+const yourScore = document.querySelector('.personal');
 //yourScore.textContent = `Your Score: ${win}`;
-const compScore = document.querySelector('#compScore');
+const compScore = document.querySelector('.computer');
 //compScore.textContent = `Your Score: ${compWin}`
 const roundNum = document.querySelector('#round');
+
+//const rightBtn = document.querySelector('#left button');
 
 
 // call functions
@@ -49,15 +51,13 @@ function playRound(playerChoice, computerSelection) {
     compWin++;
     return "You Lose! Rock beats Scissors";
   }
-  else if (playerChoice == 'sissors' && computerSelection == 'paper')
+  else if (playerChoice == 'scissors' && computerSelection == 'paper')
   {
     win++;
     return "You Win! Scissors beats Paper";
   }
   else
   {
-    win++;
-    compWin++;
     return "Tie!";
   }
 }
@@ -88,9 +88,10 @@ buttons.forEach((button) => {
     playerChoice = button.id;
     const computerSelection = getComputerChoice();
     console.log(playRound(playerChoice, computerSelection));
-    yourScore.textContent = `Your Score: ${win}`;
-    compScore.textContent = `Comp Score: ${compWin}`;
+    yourScore.textContent = win;
+    compScore.textContent = compWin;
     roundNum.textContent = `Round ${round}`;
     round++;
   });
 });
+
