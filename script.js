@@ -82,16 +82,34 @@ function winner(win, compWin)
 let playerChoice = '';
 const buttons = document.querySelectorAll('button')
 
+//const healthBar = document.querySelector('.health');
+//healthBar.style.width =- 20;
+
+//let healthWidth = 100;
+//healthBar.style.width = healthWidth + "%";
+
+
 // for each button addEventListener, get playerChoice then playRound
 buttons.forEach((button) => {
   button.addEventListener('click', () => {
     playerChoice = button.id;
     const computerSelection = getComputerChoice();
     console.log(playRound(playerChoice, computerSelection));
-    yourScore.textContent = win;
-    compScore.textContent = compWin;
-    roundNum.textContent = `Round ${round}`;
+    setScore(win, compWin);
+    setRound(round);
     round++;
   });
 });
+
+// sets score for player and computer
+function setScore(win, compWin) {
+  yourScore.textContent = win;
+  compScore.textContent = compWin;
+}
+
+// sets current round
+function setRound(round) {
+  roundNum.textContent = `Round ${round}`;
+  round++;
+}
 

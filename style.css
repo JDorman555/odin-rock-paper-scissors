@@ -28,10 +28,16 @@ h1 {
   font-weight: 700px;
 }
 
-.bar {
-  background-color: lightcoral;
-  padding: 8px;
+.hp-bar {
+  background-color: lightgrey;
+  height: 24px;
   flex: 1;
+}
+
+.health {
+  background-color: green;
+  height: 24px;
+  width: 20%;
 }
 
 .options {
