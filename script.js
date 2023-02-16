@@ -1,6 +1,6 @@
 // keep track of player wins and computer wins
-let win = 0;
-let compWin = 0;
+let roundsWon = 0;
+let roundsLost = 0;
 let round = 2;
 
 
@@ -28,42 +28,36 @@ function getComputerChoice(compChoice) {
 function playRound(playerChoice, computerSelection) {
   if (playerChoice == 'rock' && computerSelection == 'paper')
   {
-    compWin++;
     healthWidthLeft -= 20;
     leftHealth.style.width = healthWidthLeft + "%";
     return "You Lose! Paper beats Rock";
   }
   else if (playerChoice == 'rock' && computerSelection == 'scissors')
   {
-    win++;
     healthWidthRight -= 20;
     rightHealth.style.width = healthWidthRight + "%";
     return "You Win! Rock beats Scissors";
   }
   else if (playerChoice == 'paper' && computerSelection == 'scissors')
   {
-    compWin++;
     healthWidthLeft -= 20;
     leftHealth.style.width = healthWidthLeft + "%";
     return "You Lose! Scissors beats Rock";
   }
   else if (playerChoice == 'paper' && computerSelection == 'rock')
   {
-    win++;
     healthWidthRight -= 20;
     rightHealth.style.width = healthWidthRight + "%";
     return "You Win! Paper beats Rock";
   }
   else if (playerChoice == 'scissors' && computerSelection == 'rock')
   {
-    compWin++;
     healthWidthLeft -= 20;
     leftHealth.style.width = healthWidthLeft + "%";
     return "You Lose! Rock beats Scissors";
   }
   else if (playerChoice == 'scissors' && computerSelection == 'paper')
   {
-    win++;
     healthWidthRight -= 20;
     rightHealth.style.width = healthWidthRight + "%";
     return "You Win! Scissors beats Paper";
@@ -75,23 +69,6 @@ function playRound(playerChoice, computerSelection) {
     healthWidthRight -= 20;
     rightHealth.style.width = healthWidthRight + "%";
     return "Tie!";
-  }
-}
-
-// find the winner
-function winner(win, compWin)
-{
-  if (win > compWin)
-  {
-    return "You Won!";
-  }
-  else if (win < compWin)
-  {
-    return "You Lost!";
-  }
-  else
-  {
-    return "It's a Tie";
   }
 }
 
@@ -132,7 +109,6 @@ buttons.forEach((button) => {
     playerChoice = button.id;
     const computerSelection = getComputerChoice();
     console.log(playRound(playerChoice, computerSelection));
-    setScore(win, compWin);
     setRound(round);
     maxRound(round);
     round++;
@@ -141,9 +117,9 @@ buttons.forEach((button) => {
 });
 
 // sets score for player and computer
-function setScore(win, compWin) {
-  yourScore.textContent = win;
-  compScore.textContent = compWin;
+function setRoundsWon(roundsWon, roundsLost) {
+  yourScore.textContent = roundsWon;
+  compScore.textContent = roundsLost;
 }
 
 // sets current round
@@ -154,11 +130,21 @@ function setRound(round) {
 
 // sets a max round of 5
 function maxRound(round) {
-  if (healthWidthLeft == 0 || healthWidthRight == 0) {
-    roundNum.textContent = winner(win, compWin);
+  if (healthWidthLeft == 0 && healthWidthRight == 0) {
+    roundNum.textContent = "It's a Tie!";
     setTimeout(() => {resetGame(); }, 2000);
-    return true;
   }
+  else if (healthWidthRight == 0) {
+    setTimeout(() => {resetGame(); }, 2000);
+    roundsWon++;
+    roundNum.textContent = 'You Win!';
+  }
+  else if (healthWidthLeft == 0) {
+    setTimeout(() => {resetGame(); }, 2000);
+    roundsLost++;
+    roundNum.textContent = 'You Lost!';
+  }
+
 }
 
 function resetGame() {
@@ -166,6 +152,7 @@ function resetGame() {
   healthWidthRight = 100;
   leftHealth.style.width = healthWidthLeft + "%";
   rightHealth.style.width = healthWidthRight + "%";
+  setRoundsWon(roundsWon, roundsLost)
   roundNum.textContent = "Round 1";
   round = 2;
 }
