@@ -135,8 +135,8 @@ buttons.forEach((button) => {
     setScore(win, compWin);
     setRound(round);
     maxRound(round);
-    resetGame(maxRound(round));
     round++;
+    //resetGame(maxRound(round));
   });
 });
 
@@ -149,24 +149,36 @@ function setScore(win, compWin) {
 // sets current round
 function setRound(round) {
   roundNum.textContent = `Round ${round}`;
-  round++;
+  console.log(round);
 }
 
 // sets a max round of 5
 function maxRound(round) {
   if (healthWidthLeft == 0 || healthWidthRight == 0) {
     roundNum.textContent = winner(win, compWin);
+    setTimeout(() => {resetGame(); }, 2000);
     return true;
   }
 }
 
+function resetGame() {
+  healthWidthLeft = 100;
+  healthWidthRight = 100;
+  leftHealth.style.width = healthWidthLeft + "%";
+  rightHealth.style.width = healthWidthRight + "%";
+  roundNum.textContent = "Round 1";
+  round = 2;
+}
+
+/*
 function resetGame(maxRound) {
   if (maxRound == true) {
     healthWidthLeft = 100;
     healthWidthRight = 100;
     leftHealth.style.width = healthWidthLeft + "%";
     rightHealth.style.width = healthWidthRight + "%";
+    round = 0;
   }
 }
-
+*/
 
