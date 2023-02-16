@@ -75,7 +75,7 @@ function winner(win, compWin)
   }
   else
   {
-    return "It's a Tie, You both won!";
+    return "It's a Tie";
   }
 }
 
@@ -97,6 +97,7 @@ buttons.forEach((button) => {
     console.log(playRound(playerChoice, computerSelection));
     setScore(win, compWin);
     setRound(round);
+    maxRound(round);
     round++;
   });
 });
@@ -112,4 +113,11 @@ function setRound(round) {
   roundNum.textContent = `Round ${round}`;
   round++;
 }
+
+function maxRound(round) {
+  if (round == 6) {
+    roundNum.textContent = winner(win, compWin);
+  }
+}
+
 
