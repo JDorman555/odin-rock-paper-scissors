@@ -34,7 +34,7 @@ h1 {
   flex: 1;
 }
 
-.health {
+.health-left, .health-right {
   background-color: green;
   height: 24px;
   width: 20%;

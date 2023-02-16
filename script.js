@@ -29,35 +29,51 @@ function playRound(playerChoice, computerSelection) {
   if (playerChoice == 'rock' && computerSelection == 'paper')
   {
     compWin++;
+    healthWidthLeft -= 20;
+    leftHealth.style.width = healthWidthLeft + "%";
     return "You Lose! Paper beats Rock";
   }
   else if (playerChoice == 'rock' && computerSelection == 'scissors')
   {
     win++;
+    healthWidthRight -= 20;
+    rightHealth.style.width = healthWidthRight + "%";
     return "You Win! Rock beats Scissors";
   }
   else if (playerChoice == 'paper' && computerSelection == 'scissors')
   {
     compWin++;
+    healthWidthLeft -= 20;
+    leftHealth.style.width = healthWidthLeft + "%";
     return "You Lose! Scissors beats Rock";
   }
   else if (playerChoice == 'paper' && computerSelection == 'rock')
   {
     win++;
+    healthWidthRight -= 20;
+    rightHealth.style.width = healthWidthRight + "%";
     return "You Win! Paper beats Rock";
   }
   else if (playerChoice == 'scissors' && computerSelection == 'rock')
   {
     compWin++;
+    healthWidthLeft -= 20;
+    leftHealth.style.width = healthWidthLeft + "%";
     return "You Lose! Rock beats Scissors";
   }
   else if (playerChoice == 'scissors' && computerSelection == 'paper')
   {
     win++;
+    healthWidthRight -= 20;
+    rightHealth.style.width = healthWidthRight + "%";
     return "You Win! Scissors beats Paper";
   }
   else
   {
+    healthWidthLeft -= 20;
+    leftHealth.style.width = healthWidthLeft + "%";
+    healthWidthRight -= 20;
+    rightHealth.style.width = healthWidthRight + "%";
     return "Tie!";
   }
 }
@@ -80,13 +96,34 @@ function winner(win, compWin)
 }
 
 let playerChoice = '';
-const buttons = document.querySelectorAll('button')
+const buttons = document.querySelectorAll('button');
 
-//const healthBar = document.querySelector('.health');
-//healthBar.style.width =- 20;
+const leftHealth = document.querySelector('.health-left');
+const rightHealth = document.querySelector('.health-right');
 
-//let healthWidth = 100;
-//healthBar.style.width = healthWidth + "%";
+/*
+healthBars.forEach((health) => {
+  health.style.width =- 20;
+
+let healthWidth = 100;
+health.style.width = healthWidth + "%";
+})
+*/
+/*
+function setHealth(playRound(playerChoice, computerSelection)) {
+  let sen = playRound(playerChoice, computerSelection);
+  if (sen.search("Win")) {
+
+  }
+}
+*/
+
+//healthBars.style.width =- 20;
+
+let healthWidthLeft = 100;
+let healthWidthRight = 100;
+leftHealth.style.width = healthWidthLeft + "%";
+rightHealth.style.width = healthWidthRight + "%";
 
 
 // for each button addEventListener, get playerChoice then playRound
@@ -98,6 +135,7 @@ buttons.forEach((button) => {
     setScore(win, compWin);
     setRound(round);
     maxRound(round);
+    resetGame(maxRound(round));
     round++;
   });
 });
@@ -114,9 +152,20 @@ function setRound(round) {
   round++;
 }
 
+// sets a max round of 5
 function maxRound(round) {
-  if (round == 6) {
+  if (healthWidthLeft == 0 || healthWidthRight == 0) {
     roundNum.textContent = winner(win, compWin);
+    return true;
+  }
+}
+
+function resetGame(maxRound) {
+  if (maxRound == true) {
+    healthWidthLeft = 100;
+    healthWidthRight = 100;
+    leftHealth.style.width = healthWidthLeft + "%";
+    rightHealth.style.width = healthWidthRight + "%";
   }
 }
 
