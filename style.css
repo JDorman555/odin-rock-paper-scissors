@@ -38,7 +38,7 @@ h1 {
 .health-left, .health-right {
   background-color: green;
   height: 24px;
-  width: 20%;
+  width: 100%;
 }
 
 .options {
