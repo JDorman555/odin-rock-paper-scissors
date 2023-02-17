@@ -4,19 +4,10 @@ let roundsLost = 0;
 let round = 2;
 
 
-//
+// Store personal score, comptuer score and round number
 const yourScore = document.querySelector('.personal');
-//yourScore.textContent = `Your Score: ${win}`;
 const compScore = document.querySelector('.computer');
-//compScore.textContent = `Your Score: ${compWin}`
 const roundNum = document.querySelector('#round');
-
-//const rightBtn = document.querySelector('#left button');
-
-
-// call functions
-//console.log(game());
-//console.log(winner(win, compWin));
 
 // randomly pick rock, paper or scissors
 function getComputerChoice(compChoice) {
@@ -78,32 +69,18 @@ const buttons = document.querySelectorAll('button');
 const leftHealth = document.querySelector('.health-left');
 const rightHealth = document.querySelector('.health-right');
 
-/*
-healthBars.forEach((health) => {
-  health.style.width =- 20;
-
-let healthWidth = 100;
-health.style.width = healthWidth + "%";
-})
-*/
-/*
-function setHealth(playRound(playerChoice, computerSelection)) {
-  let sen = playRound(playerChoice, computerSelection);
-  if (sen.search("Win")) {
-
-  }
-}
-*/
-
-//healthBars.style.width =- 20;
-
 let healthWidthLeft = 100;
 let healthWidthRight = 100;
-leftHealth.style.width = healthWidthLeft + "%";
-rightHealth.style.width = healthWidthRight + "%";
 
-
-// for each button addEventListener, get playerChoice then playRound
+// for each button addEventListener, get playerChoice then playGame
+buttons.forEach((button) => {
+  button.addEventListener('click', () => {
+    playerChoice = button.id;
+    playGame();
+  });
+});
+    
+/*
 buttons.forEach((button) => {
   button.addEventListener('click', () => {
     playerChoice = button.id;
@@ -112,9 +89,18 @@ buttons.forEach((button) => {
     setRound(round);
     maxRound(round);
     round++;
-    //resetGame(maxRound(round));
   });
 });
+*/
+
+// play game
+function playGame() {
+  const computerSelection = getComputerChoice();
+  playRound(playerChoice, computerSelection);
+  setRound(round);
+  maxRound(round);
+  round++;
+}
 
 // sets score for player and computer
 function setRoundsWon(roundsWon, roundsLost) {
@@ -125,10 +111,9 @@ function setRoundsWon(roundsWon, roundsLost) {
 // sets current round
 function setRound(round) {
   roundNum.textContent = `Round ${round}`;
-  console.log(round);
 }
 
-// sets a max round of 5
+// makes sure round ends when a healthbar is 0
 function maxRound(round) {
   if (healthWidthLeft == 0 && healthWidthRight == 0) {
     roundNum.textContent = "It's a Tie!";
@@ -147,6 +132,7 @@ function maxRound(round) {
 
 }
 
+// reset game
 function resetGame() {
   healthWidthLeft = 100;
   healthWidthRight = 100;
@@ -157,15 +143,4 @@ function resetGame() {
   round = 2;
 }
 
-/*
-function resetGame(maxRound) {
-  if (maxRound == true) {
-    healthWidthLeft = 100;
-    healthWidthRight = 100;
-    leftHealth.style.width = healthWidthLeft + "%";
-    rightHealth.style.width = healthWidthRight + "%";
-    round = 0;
-  }
-}
-*/
 
