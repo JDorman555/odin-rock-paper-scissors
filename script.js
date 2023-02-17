@@ -79,19 +79,6 @@ buttons.forEach((button) => {
     playGame();
   });
 });
-    
-/*
-buttons.forEach((button) => {
-  button.addEventListener('click', () => {
-    playerChoice = button.id;
-    const computerSelection = getComputerChoice();
-    console.log(playRound(playerChoice, computerSelection));
-    setRound(round);
-    maxRound(round);
-    round++;
-  });
-});
-*/
 
 // play game
 function playGame() {
@@ -117,23 +104,39 @@ function setRound(round) {
 function maxRound(round) {
   if (healthWidthLeft == 0 && healthWidthRight == 0) {
     roundNum.textContent = "It's a Tie!";
+    disableButton();
     setTimeout(() => {resetGame(); }, 2000);
   }
   else if (healthWidthRight == 0) {
     setTimeout(() => {resetGame(); }, 2000);
     roundsWon++;
     roundNum.textContent = 'You Win!';
+    disableButton();
   }
   else if (healthWidthLeft == 0) {
     setTimeout(() => {resetGame(); }, 2000);
     roundsLost++;
     roundNum.textContent = 'You Lost!';
+    disableButton();
   }
 
 }
 
+function disableButton() {
+  buttons.forEach((button) => {
+    button.disabled = true;
+  });
+}
+
+function enableButton() {
+  buttons.forEach((button) => {
+    button.disabled = false;
+  });
+}
+
 // reset game
 function resetGame() {
+  enableButton();
   healthWidthLeft = 100;
   healthWidthRight = 100;
   leftHealth.style.width = healthWidthLeft + "%";
