@@ -83,6 +83,7 @@ buttons.forEach((button) => {
 // play game
 function playGame() {
   const computerSelection = getComputerChoice();
+  hlCompChoice(computerSelection);
   playRound(playerChoice, computerSelection);
   setRound(round);
   maxRound(round);
@@ -141,9 +142,33 @@ function resetGame() {
   healthWidthRight = 100;
   leftHealth.style.width = healthWidthLeft + "%";
   rightHealth.style.width = healthWidthRight + "%";
+  rock.style.boxShadow = "none";
+  paper.style.boxShadow = "none";
+  scissors.style.boxShadow = "none";
   setRoundsWon(roundsWon, roundsLost)
   roundNum.textContent = "Round 1";
   round = 2;
+}
+
+let rock = document.querySelector("#right #rock");
+let paper = document.querySelector("#right #paper");
+let scissors = document.querySelector("#right #scissors");
+
+// highlight computer choice
+function hlCompChoice(compSelection) {
+  rock.style.boxShadow = "none";
+  paper.style.boxShadow = "none";
+  scissors.style.boxShadow = "none";
+
+  if (compSelection == "rock") {
+    rock.style.boxShadow = "0 0 10px 5px yellow";
+  }
+  else if (compSelection == "paper") {
+    paper.style.boxShadow = "0 0 10px 5px yellow";
+  }
+  else {
+    scissors.style.boxShadow = "0 0 10px 5px yellow";
+  }
 }
 
 
